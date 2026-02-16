@@ -33,9 +33,9 @@ export function Expertise() {
   return (
     <Section id="expertise">
       <Reveal>
-        <span className="font-mono text-xs tracking-widest block mb-10 text-accent">
+        <h2 className="font-mono text-xs tracking-widest block mb-10 text-accent">
           02 &mdash; Core Expertise
-        </span>
+        </h2>
       </Reveal>
       <div className="grid grid-cols-1 md:grid-cols-2">
         {EXPERTISE.map((block, i) => {
