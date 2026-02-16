@@ -3,12 +3,19 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-success: var(--success);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-ring: var(--ring);
+
   --font-sans: var(--sora-sans);
   --font-mono: var(--dm-mono);
 
-  --animate-pulse-dot: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-pulse-dot: pulse-dot 2.4s ease infinite;
+  --animate-fade-in: fade-in 400ms ease-out forwards;
 
   @keyframes pulse-dot {
     0%,
@@ -19,12 +26,28 @@
       opacity: 0.35;
     }
   }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --border: oklch(1 0 0 / 0.06);
+  --background: #0b0d10;
+  --foreground: #e6eaf0;
+  --accent: #4f7fff;
+  --muted: #8b949e;
+  --subtle: rgba(139, 148, 158, 0.4);
+  --success: #3fb950;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.1);
   --ring: oklch(0.55 0.18 260);
 }
 
@@ -38,6 +61,6 @@
   }
 
   ::selection {
-    background-color: rgba(79, 127, 255, 0.2);
+    background-color: color-mix(in srgb, var(--accent) 20%, transparent);
   }
 }

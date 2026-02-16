@@ -1,9 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/utils/cn";
 
-function useReveal() {
-  const ref = useRef<HTMLElement>(null);
+interface RevealProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -12,8 +21,7 @@ function useReveal() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0)";
+          setIsVisible(true);
           observer.unobserve(el);
         }
       },
@@ -24,27 +32,15 @@ function useReveal() {
     return () => observer.disconnect();
   }, []);
 
-  return ref;
-}
-
-interface RevealProps {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}
-
-export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
-  const ref = useReveal();
-
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={className}
-      style={{
-        opacity: 0,
-        transform: "translateY(8px)",
-        transition: `opacity 300ms ease-out ${delay}ms, transform 300ms ease-out ${delay}ms`,
-      }}
+      ref={ref}
+      className={cn(
+        "transition-all duration-300 ease-out",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
+        className,
+      )}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </div>

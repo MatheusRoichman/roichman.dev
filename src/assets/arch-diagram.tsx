@@ -1,6 +1,39 @@
 import type { ComponentPropsWithoutRef } from "react";
 
+const ACCENT = "var(--accent)";
+const FOREGROUND = "var(--foreground)";
+const MUTED = "var(--muted)";
+
+function withOpacity(cssVar: string, opacity: number) {
+  return `color-mix(in srgb, ${cssVar} ${Math.round(opacity * 100)}%, transparent)`;
+}
+
 export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
+  const accentStroke = withOpacity(ACCENT, 0.3);
+  const accentFill = withOpacity(ACCENT, 0.04);
+  const accentText = withOpacity(ACCENT, 0.6);
+  const accentArrow = withOpacity(ACCENT, 0.4);
+  const accentStrokeLight = withOpacity(ACCENT, 0.25);
+  const accentTextStrong = withOpacity(ACCENT, 0.7);
+
+  const fgStroke = withOpacity(FOREGROUND, 0.12);
+  const fgFill = withOpacity(FOREGROUND, 0.02);
+  const fgStrokeLight = withOpacity(FOREGROUND, 0.1);
+  const fgStrokeFaint = withOpacity(FOREGROUND, 0.08);
+  const fgFillFaint = withOpacity(FOREGROUND, 0.015);
+  const fgStrokeDim = withOpacity(FOREGROUND, 0.07);
+  const fgFillDim = withOpacity(FOREGROUND, 0.01);
+
+  const fgText70 = withOpacity(FOREGROUND, 0.7);
+  const fgText60 = withOpacity(FOREGROUND, 0.6);
+  const fgText50 = withOpacity(FOREGROUND, 0.5);
+  const fgText40 = withOpacity(FOREGROUND, 0.4);
+
+  const mutedText50 = withOpacity(MUTED, 0.5);
+  const mutedText40 = withOpacity(MUTED, 0.4);
+  const mutedText30 = withOpacity(MUTED, 0.3);
+  const mutedText20 = withOpacity(MUTED, 0.2);
+
   return (
     <svg
       viewBox="0 0 420 340"
@@ -19,7 +52,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
           refY="3"
           orient="auto"
         >
-          <path d="M0,0 L0,6 L6,3 z" fill="rgba(79,127,255,0.4)" />
+          <path d="M0,0 L0,6 L6,3 z" fill={accentArrow} />
         </marker>
       </defs>
 
@@ -30,9 +63,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         width="140"
         height="40"
         rx="2"
-        stroke="rgba(79,127,255,0.3)"
+        stroke={accentStroke}
         strokeWidth="1"
-        fill="rgba(79,127,255,0.04)"
+        fill={accentFill}
       />
       <text
         x="210"
@@ -40,7 +73,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
-        fill="rgba(79,127,255,0.6)"
+        fill={accentText}
         letterSpacing="0.06em"
       >
         Design Tokens
@@ -51,7 +84,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.5)"
+        fill={mutedText50}
       >
         colors / spacing / type
       </text>
@@ -61,7 +94,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="52"
         x2="210"
         y2="76"
-        stroke="rgba(79,127,255,0.25)"
+        stroke={accentStrokeLight}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -73,9 +106,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         width="220"
         height="40"
         rx="2"
-        stroke="rgba(255,255,255,0.12)"
+        stroke={fgStroke}
         strokeWidth="1"
-        fill="rgba(255,255,255,0.02)"
+        fill={fgFill}
       />
       <text
         x="210"
@@ -83,7 +116,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
-        fill="rgba(230,234,240,0.7)"
+        fill={fgText70}
         letterSpacing="0.06em"
       >
         Component Library
@@ -94,9 +127,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.5)"
+        fill={mutedText50}
       >
-        typed · accessible · tested
+        typed &middot; accessible &middot; tested
       </text>
 
       {/* Branch lines to feature modules */}
@@ -105,7 +138,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="96"
         x2="72"
         y2="96"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
       />
       <line
@@ -113,7 +146,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="96"
         x2="72"
         y2="160"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
       />
       <line
@@ -121,7 +154,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="160"
         x2="96"
         y2="160"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -131,7 +164,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="116"
         x2="210"
         y2="140"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -141,7 +174,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="96"
         x2="348"
         y2="96"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
       />
       <line
@@ -149,7 +182,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="96"
         x2="348"
         y2="160"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
       />
       <line
@@ -157,7 +190,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="160"
         x2="322"
         y2="160"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -169,9 +202,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         width="116"
         height="40"
         rx="2"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
-        fill="rgba(255,255,255,0.015)"
+        fill={fgFillFaint}
       />
       <text
         x="82"
@@ -179,7 +212,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
-        fill="rgba(230,234,240,0.5)"
+        fill={fgText50}
         letterSpacing="0.04em"
       >
         Feature / A
@@ -190,7 +223,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.4)"
+        fill={mutedText40}
       >
         isolated module
       </text>
@@ -202,9 +235,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         width="120"
         height="40"
         rx="2"
-        stroke="rgba(79,127,255,0.25)"
+        stroke={accentStrokeLight}
         strokeWidth="1"
-        fill="rgba(79,127,255,0.04)"
+        fill={accentFill}
       />
       <text
         x="210"
@@ -212,7 +245,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
-        fill="rgba(79,127,255,0.7)"
+        fill={accentTextStrong}
         letterSpacing="0.04em"
       >
         Feature / B
@@ -223,7 +256,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.4)"
+        fill={mutedText40}
       >
         isolated module
       </text>
@@ -235,9 +268,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         width="116"
         height="40"
         rx="2"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
-        fill="rgba(255,255,255,0.015)"
+        fill={fgFillFaint}
       />
       <text
         x="338"
@@ -245,7 +278,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
-        fill="rgba(230,234,240,0.5)"
+        fill={fgText50}
         letterSpacing="0.04em"
       >
         Feature / C
@@ -256,7 +289,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.4)"
+        fill={mutedText40}
       >
         isolated module
       </text>
@@ -267,7 +300,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="180"
         x2="82"
         y2="220"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
       />
       <line
@@ -275,7 +308,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="220"
         x2="148"
         y2="220"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -284,7 +317,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="180"
         x2="210"
         y2="204"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -293,7 +326,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="180"
         x2="338"
         y2="220"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
       />
       <line
@@ -301,7 +334,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="220"
         x2="272"
         y2="220"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -313,9 +346,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         width="220"
         height="40"
         rx="2"
-        stroke="rgba(255,255,255,0.1)"
+        stroke={fgStrokeLight}
         strokeWidth="1"
-        fill="rgba(255,255,255,0.02)"
+        fill={fgFill}
       />
       <text
         x="210"
@@ -323,7 +356,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
-        fill="rgba(230,234,240,0.6)"
+        fill={fgText60}
         letterSpacing="0.06em"
       >
         State Boundary
@@ -334,9 +367,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.4)"
+        fill={mutedText40}
       >
-        normalized · typed
+        normalized &middot; typed
       </text>
 
       <line
@@ -344,7 +377,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         y1="244"
         x2="210"
         y2="268"
-        stroke="rgba(255,255,255,0.08)"
+        stroke={fgStrokeFaint}
         strokeWidth="1"
         markerEnd="url(#arrow)"
       />
@@ -356,9 +389,9 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         width="160"
         height="40"
         rx="2"
-        stroke="rgba(255,255,255,0.07)"
+        stroke={fgStrokeDim}
         strokeWidth="1"
-        fill="rgba(255,255,255,0.01)"
+        fill={fgFillDim}
       />
       <text
         x="210"
@@ -366,7 +399,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="10"
-        fill="rgba(230,234,240,0.4)"
+        fill={fgText40}
         letterSpacing="0.06em"
       >
         API / Services
@@ -377,7 +410,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="middle"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.3)"
+        fill={mutedText30}
       >
         abstracted layer
       </text>
@@ -388,7 +421,7 @@ export function ArchDiagram(props: ComponentPropsWithoutRef<"svg">) {
         textAnchor="end"
         fontFamily="monospace"
         fontSize="9"
-        fill="rgba(139,148,158,0.2)"
+        fill={mutedText20}
         letterSpacing="0.04em"
       >
         system diagram v1

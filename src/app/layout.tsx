@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 
 import "./globals.css";
 
-const geistSans = localFont({
+const soraSans = localFont({
   src: "../../public/fonts/sora-variable.ttf",
   variable: "--sora-sans",
   display: "swap",
@@ -58,10 +58,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${dmMono.variable}`}>
-      <body className="antialiased">
-        {children}
-      </body>
+    <html lang="en" className={`${soraSans.variable} ${dmMono.variable}`}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

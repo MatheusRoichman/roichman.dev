@@ -11,10 +11,7 @@ import { Profile } from "./components/profile";
 
 export function HomePage() {
   return (
-    <div
-      className="min-h-screen"
-      style={{ background: "#0B0D10", color: "#E6EAF0" }}
-    >
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
 
       <main>
