@@ -51,6 +51,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://roichman.dev",
   },
+  manifest: "/site.webmanifest",
+  themeColor: "#0B0D10",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png" }],
+  },
 };
 
 export default function RootLayout({
