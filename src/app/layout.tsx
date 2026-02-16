@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/next';
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 
 import "./globals.css";
@@ -52,7 +52,6 @@ export const metadata: Metadata = {
     canonical: "https://roichman.dev",
   },
   manifest: "/site.webmanifest",
-  themeColor: "#0B0D10",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -61,6 +60,10 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png" }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B0D10",
 };
 
 export default function RootLayout({
